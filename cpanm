@@ -2234,8 +2234,9 @@ $fatpacked{"App/cpanminus/script.pm"} = <<'APP_CPANMINUS_SCRIPT';
           }
       } else {
           $self->{_backends}{unzip} = sub {
-              eval { require Archive::Zip }
-                  or  die "Failed to extract $_[1] - You need to have unzip or Archive::Zip installed.\n";
+              #eval { require Archive::Zip }
+              #    or  die "Failed to extract $_[1] - You need to have unzip or Archive::Zip installed.\n";
+              require Archive::Zip;
               my($self, $file) = @_;
               my $zip = Archive::Zip->new();
               my $status;
@@ -8146,7 +8147,7 @@ $fatpacked{"Module/Metadata.pm"} = <<'MODULE_METADATA';
     ([\$*])         # sigil - $ or *
     (
       (             # optional leading package name
-        (?:::|\')?  # possibly starting like just :: (Ì  la $::VERSION)
+        (?:::|\')?  # possibly starting like just :: (ï¿½  la $::VERSION)
         (?:\w+(?:::|\'))*  # Foo::Bar:: ...
       )?
       VERSION
